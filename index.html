@@ -1,0 +1,822 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Luxe Wigs - Premium Hair Solutions</title>
+  <!-- 外部资源引入（确保Tailwind先加载） -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link href="https://cdn.jsdelivr.net/npm/font-awesome@4.7.0/css/font-awesome.min.css" rel="stylesheet">
+  <!-- Tailwind 配置（必须放在head中，不能移到外部CSS） -->
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            primary: '#5D3FD3',
+            secondary: '#F8C8DC',
+            dark: '#2D2A32',
+            light: '#F9F7FF'
+          },
+          fontFamily: {
+            inter: ['Inter', 'sans-serif']
+          }
+        }
+      }
+    }
+  </script>
+  <style>
+      /* WhatsApp Floating Button */
+      .whatsapp-float {
+        position: fixed;
+        width: 48px;
+        height: 48px;
+        bottom: 30px;
+        right: 30px;
+        background-color: #25d366;
+        color: #FFF;
+        border-radius: 10px;
+        text-align: center;
+        font-size: 30px;
+        box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.3);
+        z-index: 1000;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        transition: all 0.3s ease;
+        text-decoration: none;
+      }
+
+      .whatsapp-float:hover {
+        background-color: #128c7e;
+        transform: scale(1.1);
+        color: #FFF;
+        text-decoration: none;
+      }
+
+      .whatsapp-float i {
+        line-height: 48px;
+      }
+
+      /* Mobile responsive */
+      @media screen and (max-width: 768px) {
+        .whatsapp-float {
+          width: 48px;
+          height: 48px;
+          bottom: 20px;
+          right: 20px;
+          font-size: 26px;
+        }
+
+        .whatsapp-float i {
+          line-height: 48px;
+        }
+      }
+  </style>    
+  <!-- Tailwind 自定义工具类（必须放在head中） -->
+  <style type="text/tailwindcss">
+    @layer utilities {
+      .content-auto {
+        content-visibility: auto;
+      }
+      .text-shadow {
+        text-shadow: 0 2px 4px rgba(0,0,0,0.3);
+      }
+      .transition-navbar {
+        transition: background-color 0.3s, padding 0.3s, box-shadow 0.3s;
+      }
+      .scrollbar-hide {
+        -ms-overflow-style: none;
+        scrollbar-width: none;
+      }
+      .scrollbar-hide::-webkit-scrollbar {
+        display: none;
+      }
+    }
+  </style>
+  <!-- 字体引入 -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <!-- 外部CSS（纯CSS，无Tailwind指令） -->
+  <link rel="stylesheet" href="./src/css/style.css">
+</head>
+<body class="font-inter text-dark bg-light antialiased">
+  <!-- Navigation -->
+  <header id="navbar" class="fixed w-full top-0 z-50 transition-navbar py-4">
+    <div class="container mx-auto px-4 md:px-6">
+      <nav class="flex items-center justify-between">
+        <a href="#home" class="text-2xl font-bold text-white text-shadow">Elunehair</a>
+        
+        <!-- 桌面导航（移除Shop Now） -->
+        <div class="hidden md:flex items-center space-x-8">
+          <a href="#home" class="text-white hover:text-secondary transition-colors font-medium">Home</a>
+          <a href="#products" class="text-white hover:text-secondary transition-colors font-medium">Products</a>
+          <a href="#about" class="text-white hover:text-secondary transition-colors font-medium">About Us</a>
+          <a href="#faq" class="text-white hover:text-secondary transition-colors font-medium">FAQ</a>
+          <a href="#contact" class="text-white hover:text-secondary transition-colors font-medium">Contact</a>
+        </div>
+        
+        <!-- 移动端菜单按钮 -->
+        <button id="mobile-menu-button" class="md:hidden text-white text-2xl">
+          <i class="fa fa-bars"></i>
+        </button>
+      </nav>
+      
+      <!-- 移动端导航（移除Shop Now） -->
+      <div id="mobile-menu" class="md:hidden hidden mt-4 bg-white rounded-lg shadow-lg p-4 absolute left-4 right-4">
+        <div class="flex flex-col space-y-3">
+          <a href="#home" class="text-dark hover:text-primary transition-colors py-2 border-b border-gray-100">Home</a>
+          <a href="#products" class="text-dark hover:text-primary transition-colors py-2 border-b border-gray-100">Products</a>
+          <a href="#about" class="text-dark hover:text-primary transition-colors py-2 border-b border-gray-100">About Us</a>
+          <a href="#faq" class="text-dark hover:text-primary transition-colors py-2 border-b border-gray-100">FAQ</a>
+          <a href="#contact" class="text-dark hover:text-primary transition-colors py-2">Contact</a>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- Hero Section (HOME) -->
+  <section id="home" class="h-screen flex items-center justify-center relative overflow-hidden">
+    <div class="absolute inset-0 z-0">
+      <!-- 本地背景图（需放入src/images/） -->
+      <img src="./src/images/hero-bg.jpg" alt="Premium wigs collection" class="w-full h-full object-cover">
+      <div class="absolute inset-0 bg-dark/50"></div>
+    </div>
+    <div class="container mx-auto px-4 md:px-6 relative z-10 text-center">
+      <h1 class="text-[clamp(2.5rem,6vw,4.5rem)] font-bold text-white leading-tight text-shadow mb-6">
+        Transform Your Look <br class="hidden md:block">With Luxurious Wigs
+      </h1>
+      <p class="text-[clamp(1rem,2vw,1.25rem)] text-white/90 max-w-2xl mx-auto mb-8 text-shadow">
+        Premium quality, natural-looking wigs for every style and occasion. Handcrafted with attention to detail.
+      </p>
+      <div class="flex flex-col sm:flex-row justify-center gap-4">
+        <a href="#products" class="bg-primary hover:bg-primary/90 text-white px-8 py-3 rounded-full text-lg font-medium transition-all transform hover:scale-105">
+          Explore Collection
+        </a>
+        <a href="#about" class="bg-white/20 backdrop-blur-sm hover:bg-white/30 text-white border border-white/40 px-8 py-3 rounded-full text-lg font-medium transition-all">
+          Learn More
+        </a>
+      </div>
+    </div>
+    <div class="absolute bottom-8 left-0 right-0 flex justify-center animate-bounce">
+      <a href="#products" class="text-white text-3xl">
+        <i class="fa fa-chevron-down"></i>
+      </a>
+    </div>
+  </section>
+
+  <!-- 多组产品模块（PRODUCT） -->
+  <section id="products" class="py-20 bg-white">
+    <div class="container mx-auto px-4 md:px-6">
+      <div class="text-center mb-16">
+        <h2 class="text-[clamp(1.8rem,4vw,2.5rem)] font-bold text-dark mb-4">Our Product Collections</h2>
+        <p class="text-gray-600 max-w-2xl mx-auto text-lg">Discover our curated selection of wigs, organized by style for easy browsing.</p>
+      </div>
+
+      <!-- 产品组1：Human Hair Wigs -->
+<div class="mb-20">
+  <h3 class="text-xl font-semibold mb-6 text-left pl-2 md:pl-0">Human Hair Wigs</h3>
+  <div class="relative">
+    <button class="scroll-left-btn absolute left-0 top-1/2 -translate-y-1/2 z-10 bg-white/80 hover:bg-white text-primary w-10 h-10 rounded-full shadow-lg flex items-center justify-center md:-left-5 transition-all">
+      <i class="fa fa-chevron-left"></i>
+    </button>
+    <button class="scroll-right-btn absolute right-0 top-1/2 -translate-y-1/2 z-10 bg-white/80 hover:bg-white text-primary w-10 h-10 rounded-full shadow-lg flex items-center justify-center md:-right-5 transition-all">
+      <i class="fa fa-chevron-right"></i>
+    </button>
+    
+    <!-- 产品滚动容器1 -->
+    <div class="product-container flex gap-6 overflow-x-auto scrollbar-hide py-4 px-2 snap-x">
+      <!-- 产品1（修改后） -->
+      <div class="min-w-[280px] md:min-w-[320px] snap-start group">
+        <div class="bg-light rounded-xl overflow-hidden shadow-md hover:shadow-xl transition-all duration-300 h-full flex flex-col">
+          <div class="relative overflow-hidden">
+            <img src="./src/images/product-1.jpg" alt="Natural Curly Wig" class="w-full h-80 object-cover transition-transform duration-500 group-hover:scale-110">
+            <div class="absolute top-4 right-4 bg-primary text-white text-sm font-medium px-3 py-1 rounded-full">
+              New
+            </div>
+            <!-- 新增：悬停图标容器 -->
+            <div class="absolute bottom-4 left-4 flex gap-3 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 transform translate-y-4 group-hover:translate-y-0 z-10">
+              <!-- 放大图片图标 -->
+              <button class="enlarge-img-btn bg-white/90 hover:bg-white text-primary w-10 h-10 rounded-full shadow-lg flex items-center justify-center transition-all" data-img="./src/images/product-1.jpg" data-title="Natural Curly Wig">
+                <i class="fa fa-search-plus"></i>
+              </button>
+              <!-- 链接图标 -->
+              <a href="#" class="bg-white/90 hover:bg-white text-primary w-10 h-10 rounded-full shadow-lg flex items-center justify-center transition-all" target="_blank" rel="noopener">
+                <i class="fa fa-link"></i>
+              </a>
+            </div>
+          </div>
+          <div class="p-5 flex-grow flex flex-col">
+            <h4 class="font-semibold text-lg mb-2">Natural Curly Wig</h4>
+            <p class="text-gray-600 text-sm flex-grow">100% human hair, natural curls, adjustable cap</p>
+          </div>
+        </div>
+      </div>
+      
+      <!-- 产品2（修改后，结构同上） -->
+      <div class="min-w-[280px] md:min-w-[320px] snap-start group">
+        <div class="bg-light rounded-xl overflow-hidden shadow-md hover:shadow-xl transition-all duration-300 h-full flex flex-col">
+          <div class="relative overflow-hidden">
+            <img src="./src/images/product-2.jpg" alt="Long Wavy Wig" class="w-full h-80 object-cover transition-transform duration-500 group-hover:scale-110">
+            <!-- 悬停图标容器 -->
+            <div class="absolute bottom-4 left-4 flex gap-3 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 transform translate-y-4 group-hover:translate-y-0 z-10">
+              <button class="enlarge-img-btn bg-white/90 hover:bg-white text-primary w-10 h-10 rounded-full shadow-lg flex items-center justify-center transition-all" data-img="./src/images/product-2.jpg" data-title="Long Wavy Wig">
+                <i class="fa fa-search-plus"></i>
+              </button>
+              <a href="#" class="bg-white/90 hover:bg-white text-primary w-10 h-10 rounded-full shadow-lg flex items-center justify-center transition-all" target="_blank" rel="noopener">
+                <i class="fa fa-link"></i>
+              </a>
+            </div>
+          </div>
+          <div class="p-5 flex-grow flex flex-col">
+            <h4 class="font-semibold text-lg mb-2">Long Wavy Wig</h4>
+            <p class="text-gray-600 text-sm flex-grow">Human hair blend, loose waves, full lace design</p>
+          </div>
+        </div>
+      </div>
+      
+      <!-- 产品3（修改后，结构同上） -->
+      <div class="min-w-[280px] md:min-w-[320px] snap-start group">
+        <div class="bg-light rounded-xl overflow-hidden shadow-md hover:shadow-xl transition-all duration-300 h-full flex flex-col">
+          <div class="relative overflow-hidden">
+            <img src="./src/images/product-3.jpg" alt="Ombre Human Wig" class="w-full h-80 object-cover transition-transform duration-500 group-hover:scale-110">
+            <!-- 悬停图标容器 -->
+            <div class="absolute bottom-4 left-4 flex gap-3 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 transform translate-y-4 group-hover:translate-y-0 z-10">
+              <button class="enlarge-img-btn bg-white/90 hover:bg-white text-primary w-10 h-10 rounded-full shadow-lg flex items-center justify-center transition-all" data-img="./src/images/product-3.jpg" data-title="Ombre Human Wig">
+                <i class="fa fa-search-plus"></i>
+              </button>
+              <a href="#" class="bg-white/90 hover:bg-white text-primary w-10 h-10 rounded-full shadow-lg flex items-center justify-center transition-all" target="_blank" rel="noopener">
+                <i class="fa fa-link"></i>
+              </a>
+            </div>
+          </div>
+          <div class="p-5 flex-grow flex flex-col">
+            <h4 class="font-semibold text-lg mb-2">Ombre Human Wig</h4>
+            <p class="text-gray-600 text-sm flex-grow">100% human hair, gradient color, heat-resistant</p>
+          </div>
+        </div>
+      </div>
+      
+      <!-- 产品4（修改后，结构同上） -->
+      <div class="min-w-[280px] md:min-w-[320px] snap-start group">
+        <div class="bg-light rounded-xl overflow-hidden shadow-md hover:shadow-xl transition-all duration-300 h-full flex flex-col">
+          <div class="relative overflow-hidden">
+            <img src="./src/images/product-4.jpg" alt="Bob Human Wig" class="w-full h-80 object-cover transition-transform duration-500 group-hover:scale-110">
+            <!-- 悬停图标容器 -->
+            <div class="absolute bottom-4 left-4 flex gap-3 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 transform translate-y-4 group-hover:translate-y-0 z-10">
+              <button class="enlarge-img-btn bg-white/90 hover:bg-white text-primary w-10 h-10 rounded-full shadow-lg flex items-center justify-center transition-all" data-img="./src/images/product-4.jpg" data-title="Bob Human Wig">
+                <i class="fa fa-search-plus"></i>
+              </button>
+              <a href="#" class="bg-white/90 hover:bg-white text-primary w-10 h-10 rounded-full shadow-lg flex items-center justify-center transition-all" target="_blank" rel="noopener">
+                <i class="fa fa-link"></i>
+              </a>
+            </div>
+          </div>
+          <div class="p-5 flex-grow flex flex-col">
+            <h4 class="font-semibold text-lg mb-2">Bob Human Wig</h4>
+            <p class="text-gray-600 text-sm flex-grow">Human hair, short bob style, natural hairline</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- 产品组2：Synthetic Wigs（所有产品卡片均按上述结构修改，添加悬停图标容器） -->
+<!-- 产品组3：Lace Front Wigs（所有产品卡片均按上述结构修改，添加悬停图标容器） -->
+
+      <!-- 产品组2：Synthetic Wigs -->
+      <div class="mb-20">
+        <h3 class="text-xl font-semibold mb-6 text-left pl-2 md:pl-0">Synthetic Wigs</h3>
+        <div class="relative">
+          <button class="scroll-left-btn absolute left-0 top-1/2 -translate-y-1/2 z-10 bg-white/80 hover:bg-white text-primary w-10 h-10 rounded-full shadow-lg flex items-center justify-center md:-left-5 transition-all">
+            <i class="fa fa-chevron-left"></i>
+          </button>
+          <button class="scroll-right-btn absolute right-0 top-1/2 -translate-y-1/2 z-10 bg-white/80 hover:bg-white text-primary w-10 h-10 rounded-full shadow-lg flex items-center justify-center md:-right-5 transition-all">
+            <i class="fa fa-chevron-right"></i>
+          </button>
+          
+          <!-- 产品滚动容器2 -->
+          <div class="product-container flex gap-6 overflow-x-auto scrollbar-hide py-4 px-2 snap-x">
+            <!-- 产品5 -->
+            <div class="min-w-[280px] md:min-w-[320px] snap-start group">
+              <div class="bg-light rounded-xl overflow-hidden shadow-md hover:shadow-xl transition-all duration-300 h-full flex flex-col">
+                <div class="relative overflow-hidden">
+                  <img src="./src/images/product-5.jpg" alt="Straight Bob Wig" class="w-full h-80 object-cover transition-transform duration-500 group-hover:scale-110">
+                  <!-- 悬停图标容器 -->
+                  <div class="absolute bottom-4 left-4 flex gap-3 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 transform translate-y-4 group-hover:translate-y-0 z-10">
+                    <button class="enlarge-img-btn bg-white/90 hover:bg-white text-primary w-10 h-10 rounded-full shadow-lg flex items-center justify-center transition-all" data-img="./src/images/product-5.jpg" data-title="Straight Bob Wig">
+                      <i class="fa fa-search-plus"></i>
+                    </button>
+                    <a href="#" class="bg-white/90 hover:bg-white text-primary w-10 h-10 rounded-full shadow-lg flex items-center justify-center transition-all" target="_blank" rel="noopener">
+                      <i class="fa fa-link"></i>
+                    </a>
+                  </div>
+                </div>
+                <div class="p-5 flex-grow flex flex-col">
+                  <h4 class="font-semibold text-lg mb-2">Straight Bob Wig</h4>
+                  <p class="text-gray-600 text-sm flex-grow">Synthetic, heat resistant, shoulder length</p>
+                </div>
+              </div>
+            </div>
+            <!-- 产品6 -->
+            <div class="min-w-[280px] md:min-w-[320px] snap-start group">
+              <div class="bg-light rounded-xl overflow-hidden shadow-md hover:shadow-xl transition-all duration-300 h-full flex flex-col">
+                <div class="relative overflow-hidden">
+                  <img src="./src/images/product-6.jpg" alt="Pixie Cut Wig" class="w-full h-80 object-cover transition-transform duration-500 group-hover:scale-110">
+                  <!-- 悬停图标容器 -->
+                  <div class="absolute bottom-4 left-4 flex gap-3 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 transform translate-y-4 group-hover:translate-y-0 z-10">
+                    <button class="enlarge-img-btn bg-white/90 hover:bg-white text-primary w-10 h-10 rounded-full shadow-lg flex items-center justify-center transition-all" data-img="./src/images/product-6.jpg" data-title="Pixie Cut Wig">
+                      <i class="fa fa-search-plus"></i>
+                    </button>
+                    <a href="#" class="bg-white/90 hover:bg-white text-primary w-10 h-10 rounded-full shadow-lg flex items-center justify-center transition-all" target="_blank" rel="noopener">
+                      <i class="fa fa-link"></i>
+                    </a>
+                  </div>
+                  <div class="absolute top-4 right-4 bg-secondary text-dark text-sm font-medium px-3 py-1 rounded-full">
+                    Bestseller
+                  </div>
+                </div>
+                <div class="p-5 flex-grow flex flex-col">
+                  <h4 class="font-semibold text-lg mb-2">Pixie Cut Wig</h4>
+                  <p class="text-gray-600 text-sm flex-grow">Synthetic, short style, natural hairline</p>
+                </div>
+              </div>
+            </div>
+            <!-- 产品7 -->
+            <div class="min-w-[280px] md:min-w-[320px] snap-start group">
+              <div class="bg-light rounded-xl overflow-hidden shadow-md hover:shadow-xl transition-all duration-300 h-full flex flex-col">
+                <div class="relative overflow-hidden">
+                  <img src="./src/images/product-7.jpg" alt="Curly Synthetic Wig" class="w-full h-80 object-cover transition-transform duration-500 group-hover:scale-110">
+                  <!-- 悬停图标容器 -->
+                  <div class="absolute bottom-4 left-4 flex gap-3 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 transform translate-y-4 group-hover:translate-y-0 z-10">
+                    <button class="enlarge-img-btn bg-white/90 hover:bg-white text-primary w-10 h-10 rounded-full shadow-lg flex items-center justify-center transition-all" data-img="./src/images/product-7.jpg" data-title="Curly Synthetic Wig">
+                      <i class="fa fa-search-plus"></i>
+                    </button>
+                    <a href="#" class="bg-white/90 hover:bg-white text-primary w-10 h-10 rounded-full shadow-lg flex items-center justify-center transition-all" target="_blank" rel="noopener">
+                      <i class="fa fa-link"></i>
+                    </a>
+                  </div>
+                </div>
+                <div class="p-5 flex-grow flex flex-col">
+                  <h4 class="font-semibold text-lg mb-2">Curly Synthetic Wig</h4>
+                  <p class="text-gray-600 text-sm flex-grow">Synthetic fiber, tight curls, lightweight cap</p>
+                </div>
+              </div>
+            </div>
+            <!-- 产品8 -->
+            <div class="min-w-[280px] md:min-w-[320px] snap-start group">
+              <div class="bg-light rounded-xl overflow-hidden shadow-md hover:shadow-xl transition-all duration-300 h-full flex flex-col">
+                <div class="relative overflow-hidden">
+                  <img src="./src/images/product-8.jpg" alt="Long Synthetic Wig" class="w-full h-80 object-cover transition-transform duration-500 group-hover:scale-110">
+                  <!-- 悬停图标容器 -->
+                  <div class="absolute bottom-4 left-4 flex gap-3 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 transform translate-y-4 group-hover:translate-y-0 z-10">
+                    <button class="enlarge-img-btn bg-white/90 hover:bg-white text-primary w-10 h-10 rounded-full shadow-lg flex items-center justify-center transition-all" data-img="./src/images/product-8.jpg" data-title="Long Synthetic Wig">
+                      <i class="fa fa-search-plus"></i>
+                    </button>
+                    <a href="#" class="bg-white/90 hover:bg-white text-primary w-10 h-10 rounded-full shadow-lg flex items-center justify-center transition-all" target="_blank" rel="noopener">
+                      <i class="fa fa-link"></i>
+                    </a>
+                  </div>
+                </div>
+                <div class="p-5 flex-grow flex flex-col">
+                  <h4 class="font-semibold text-lg mb-2">Long Synthetic Wig</h4>
+                  <p class="text-gray-600 text-sm flex-grow">Synthetic, body wave, easy to maintain</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- 产品组3：Lace Front Wigs -->
+      <div>
+        <h3 class="text-xl font-semibold mb-6 text-left pl-2 md:pl-0">Lace Front Wigs</h3>
+        <div class="relative">
+          <button class="scroll-left-btn absolute left-0 top-1/2 -translate-y-1/2 z-10 bg-white/80 hover:bg-white text-primary w-10 h-10 rounded-full shadow-lg flex items-center justify-center md:-left-5 transition-all">
+            <i class="fa fa-chevron-left"></i>
+          </button>
+          <button class="scroll-right-btn absolute right-0 top-1/2 -translate-y-1/2 z-10 bg-white/80 hover:bg-white text-primary w-10 h-10 rounded-full shadow-lg flex items-center justify-center md:-right-5 transition-all">
+            <i class="fa fa-chevron-right"></i>
+          </button>
+          
+          <!-- 产品滚动容器3 -->
+          <div class="product-container flex gap-6 overflow-x-auto scrollbar-hide py-4 px-2 snap-x">
+            <!-- 产品9 -->
+            <div class="min-w-[280px] md:min-w-[320px] snap-start group">
+              <div class="bg-light rounded-xl overflow-hidden shadow-md hover:shadow-xl transition-all duration-300 h-full flex flex-col">
+                <div class="relative overflow-hidden">
+                  <img src="./src/images/product-9.jpg" alt="Lace Front Bob Wig" class="w-full h-80 object-cover transition-transform duration-500 group-hover:scale-110">
+                  <!-- 悬停图标容器 -->
+                  <div class="absolute bottom-4 left-4 flex gap-3 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 transform translate-y-4 group-hover:translate-y-0 z-10">
+                    <button class="enlarge-img-btn bg-white/90 hover:bg-white text-primary w-10 h-10 rounded-full shadow-lg flex items-center justify-center transition-all" data-img="./src/images/product-9.jpg" data-title="Lace Front Bob Wig">
+                      <i class="fa fa-search-plus"></i>
+                    </button>
+                    <a href="#" class="bg-white/90 hover:bg-white text-primary w-10 h-10 rounded-full shadow-lg flex items-center justify-center transition-all" target="_blank" rel="noopener">
+                      <i class="fa fa-link"></i>
+                    </a>
+                  </div>
+                </div>
+                <div class="p-5 flex-grow flex flex-col">
+                  <h4 class="font-semibold text-lg mb-2">Lace Front Bob Wig</h4>
+                  <p class="text-gray-600 text-sm flex-grow">Lace front, human hair blend, natural parting</p>
+                </div>
+              </div>
+            </div>
+            <!-- 产品10 -->
+            <div class="min-w-[280px] md:min-w-[320px] snap-start group">
+              <div class="bg-light rounded-xl overflow-hidden shadow-md hover:shadow-xl transition-all duration-300 h-full flex flex-col">
+                <div class="relative overflow-hidden">
+                  <img src="./src/images/product-10.jpg" alt="Lace Front Wavy Wig" class="w-full h-80 object-cover transition-transform duration-500 group-hover:scale-110">
+                  <!-- 悬停图标容器 -->
+                  <div class="absolute bottom-4 left-4 flex gap-3 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 transform translate-y-4 group-hover:translate-y-0 z-10">
+                    <button class="enlarge-img-btn bg-white/90 hover:bg-white text-primary w-10 h-10 rounded-full shadow-lg flex items-center justify-center transition-all" data-img="./src/images/product-10.jpg" data-title="Lace Front Wavy Wig">
+                      <i class="fa fa-search-plus"></i>
+                    </button>
+                    <a href="#" class="bg-white/90 hover:bg-white text-primary w-10 h-10 rounded-full shadow-lg flex items-center justify-center transition-all" target="_blank" rel="noopener">
+                      <i class="fa fa-link"></i>
+                    </a>
+                  </div>
+                </div>
+                <div class="p-5 flex-grow flex flex-col">
+                  <h4 class="font-semibold text-lg mb-2">Lace Front Wavy Wig</h4>
+                  <p class="text-gray-600 text-sm flex-grow">Full lace, human hair, adjustable strap</p>
+                </div>
+              </div>
+            </div>
+            <!-- 产品11 -->
+            <div class="min-w-[280px] md:min-w-[320px] snap-start group">
+              <div class="bg-light rounded-xl overflow-hidden shadow-md hover:shadow-xl transition-all duration-300 h-full flex flex-col">
+                <div class="relative overflow-hidden">
+                  <img src="./src/images/product-11.jpg" alt="Lace Front Curly Wig" class="w-full h-80 object-cover transition-transform duration-500 group-hover:scale-110">
+                  <!-- 悬停图标容器 -->
+                  <div class="absolute bottom-4 left-4 flex gap-3 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 transform translate-y-4 group-hover:translate-y-0 z-10">
+                    <button class="enlarge-img-btn bg-white/90 hover:bg-white text-primary w-10 h-10 rounded-full shadow-lg flex items-center justify-center transition-all" data-img="./src/images/product-11.jpg" data-title="Lace Front Curly Wig">
+                      <i class="fa fa-search-plus"></i>
+                    </button>
+                    <a href="#" class="bg-white/90 hover:bg-white text-primary w-10 h-10 rounded-full shadow-lg flex items-center justify-center transition-all" target="_blank" rel="noopener">
+                      <i class="fa fa-link"></i>
+                    </a>
+                  </div>
+                </div>
+                <div class="p-5 flex-grow flex flex-col">
+                  <h4 class="font-semibold text-lg mb-2">Lace Front Curly Wig</h4>
+                  <p class="text-gray-600 text-sm flex-grow">Lace front, synthetic, heat-resistant</p>
+                </div>
+              </div>
+            </div>
+            <!-- 产品12 -->
+            <div class="min-w-[280px] md:min-w-[320px] snap-start group">
+              <div class="bg-light rounded-xl overflow-hidden shadow-md hover:shadow-xl transition-all duration-300 h-full flex flex-col">
+                <div class="relative overflow-hidden">
+                  <img src="./src/images/product-12.jpg" alt="Lace Front Long Wig" class="w-full h-80 object-cover transition-transform duration-500 group-hover:scale-110">
+                  <!-- 悬停图标容器 -->
+                  <div class="absolute bottom-4 left-4 flex gap-3 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 transform translate-y-4 group-hover:translate-y-0 z-10">
+                    <button class="enlarge-img-btn bg-white/90 hover:bg-white text-primary w-10 h-10 rounded-full shadow-lg flex items-center justify-center transition-all" data-img="./src/images/product-12.jpg" data-title="Lace Front Long Wig">
+                      <i class="fa fa-search-plus"></i>
+                    </button>
+                    <a href="#" class="bg-white/90 hover:bg-white text-primary w-10 h-10 rounded-full shadow-lg flex items-center justify-center transition-all" target="_blank" rel="noopener">
+                      <i class="fa fa-link"></i>
+                    </a>
+                  </div>
+                </div>
+                <div class="p-5 flex-grow flex flex-col">
+                  <h4 class="font-semibold text-lg mb-2">Lace Front Long Wig</h4>
+                  <p class="text-gray-600 text-sm flex-grow">Lace front, human hair, smooth texture</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- About Us Section -->
+  <section id="about" class="py-20 bg-light">
+    <div class="container mx-auto px-4 md:px-6">
+      <div class="grid md:grid-cols-2 gap-12 items-center">
+        <div class="relative">
+          <div class="rounded-xl overflow-hidden shadow-xl">
+            <!-- 本地关于我们图片 -->
+            <img src="./src/images/about-img.jpg" alt="About Elunehair" class="w-full h-auto">
+          </div>
+          <div class="absolute -bottom-6 -right-6 bg-primary text-white p-6 rounded-xl shadow-lg hidden md:block">
+            <p class="text-3xl font-bold">10+</p>
+            <p class="text-sm">Years of Excellence</p>
+          </div>
+        </div>
+        
+        <div>
+          <h2 class="text-[clamp(1.8rem,4vw,2.5rem)] font-bold text-dark mb-6">About Elunehair</h2>
+          <p class="text-gray-600 mb-6 text-lg">Founded in 2013, Elunehair has been dedicated to providing premium quality wigs that combine comfort, style, and natural appearance.</p>
+          <p class="text-gray-600 mb-8">Our team of experts carefully selects each hair strand and handcrafts every wig to ensure the highest standards. We believe that everyone deserves to feel confident and beautiful, which is why we offer a wide range of styles, lengths, and colors to suit every individual.</p>
+          
+          <div class="grid grid-cols-2 gap-6 mb-8">
+            <div class="flex items-start">
+              <div class="bg-primary/10 p-3 rounded-full text-primary mr-4">
+                <i class="fa fa-check-circle"></i>
+              </div>
+              <div>
+                <h3 class="font-semibold mb-2">Premium Quality</h3>
+                <p class="text-gray-600 text-sm">Only the finest materials</p>
+              </div>
+            </div>
+            
+            <div class="flex items-start">
+              <div class="bg-primary/10 p-3 rounded-full text-primary mr-4">
+                <i class="fa fa-scissors"></i>
+              </div>
+              <div>
+                <h3 class="font-semibold mb-2">Expert Craftsmanship</h3>
+                <p class="text-gray-600 text-sm">Handmade with precision</p>
+              </div>
+            </div>
+            
+            <div class="flex items-start">
+              <div class="bg-primary/10 p-3 rounded-full text-primary mr-4">
+                <i class="fa fa-globe"></i>
+              </div>
+              <div>
+                <h3 class="font-semibold mb-2">Global Shipping</h3>
+                <p class="text-gray-600 text-sm">Delivered worldwide</p>
+              </div>
+            </div>
+            
+            <div class="flex items-start">
+              <div class="bg-primary/10 p-3 rounded-full text-primary mr-4">
+                <i class="fa fa-comments"></i>
+              </div>
+              <div>
+                <h3 class="font-semibold mb-2">24/7 Support</h3>
+                <p class="text-gray-600 text-sm">Customer care always available</p>
+              </div>
+            </div>
+          </div>
+          
+          <a href="#contact" class="inline-block bg-primary hover:bg-primary/90 text-white px-8 py-3 rounded-full font-medium transition-all transform hover:scale-105">
+            Get In Touch
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FAQ Section -->
+  <section id="faq" class="py-20 bg-white">
+    <div class="container mx-auto px-4 md:px-6">
+      <div class="text-center mb-16">
+        <h2 class="text-[clamp(1.8rem,4vw,2.5rem)] font-bold text-dark mb-4">Frequently Asked Questions</h2>
+        <p class="text-gray-600 max-w-2xl mx-auto text-lg">Find answers to common questions about our wigs, materials, care, and more.</p>
+      </div>
+      
+      <div class="max-w-3xl mx-auto">
+        <!-- FAQ 1 -->
+        <div class="mb-4 border border-gray-200 rounded-xl overflow-hidden">
+          <button class="faq-question w-full flex justify-between items-center p-6 text-left bg-light hover:bg-primary/5 transition-colors">
+            <span class="font-semibold text-lg">How do I choose the right wig size?</span>
+            <i class="fa fa-plus text-primary transition-transform"></i>
+          </button>
+          <div class="faq-answer hidden p-6 bg-white border-t border-gray-200">
+            <p class="text-gray-600">To find your perfect fit, measure the circumference of your head from the front hairline, around the ears, to the nape of your neck. Most of our wigs come with adjustable straps to ensure a comfortable fit for head sizes 21.5" to 23.5".</p>
+          </div>
+        </div>
+        
+        <!-- FAQ 2 -->
+        <div class="mb-4 border border-gray-200 rounded-xl overflow-hidden">
+          <button class="faq-question w-full flex justify-between items-center p-6 text-left bg-light hover:bg-primary/5 transition-colors">
+            <span class="font-semibold text-lg">How should I care for my human hair wig?</span>
+            <i class="fa fa-plus text-primary transition-transform"></i>
+          </button>
+          <div class="faq-answer hidden p-6 bg-white border-t border-gray-200">
+            <p class="text-gray-600">Human hair wigs should be washed with sulfate-free shampoo and conditioner. Gently comb with a wide-tooth comb, avoid rubbing or twisting. Allow to air dry on a wig stand. Style with heat tools up to 350°F. Store on a wig stand when not in use.</p>
+          </div>
+        </div>
+        
+        <!-- FAQ 3 -->
+        <div class="mb-4 border border-gray-200 rounded-xl overflow-hidden">
+          <button class="faq-question w-full flex justify-between items-center p-6 text-left bg-light hover:bg-primary/5 transition-colors">
+            <span class="font-semibold text-lg">Can I return or exchange a wig?</span>
+            <i class="fa fa-plus text-primary transition-transform"></i>
+          </button>
+          <div class="faq-answer hidden p-6 bg-white border-t border-gray-200">
+            <p class="text-gray-600">We accept returns and exchanges within 30 days of delivery, provided the wig is in its original condition, unworn, and with all tags attached. Custom orders and clearance items are final sale.</p>
+          </div>
+        </div>
+        
+        <!-- FAQ 4 -->
+        <div class="mb-4 border border-gray-200 rounded-xl overflow-hidden">
+          <button class="faq-question w-full flex justify-between items-center p-6 text-left bg-light hover:bg-primary/5 transition-colors">
+            <span class="font-semibold text-lg">How long will my wig last?</span>
+            <i class="fa fa-plus text-primary transition-transform"></i>
+          </button>
+          <div class="faq-answer hidden p-6 bg-white border-t border-gray-200">
+            <p class="text-gray-600">The lifespan of your wig depends on the material and how often it's worn. Human hair wigs typically last 6-12 months with regular wear and proper care. Synthetic wigs generally last 3-6 months with regular wear.</p>
+          </div>
+        </div>
+        
+        <!-- FAQ 5 -->
+        <div class="mb-4 border border-gray-200 rounded-xl overflow-hidden">
+          <button class="faq-question w-full flex justify-between items-center p-6 text-left bg-light hover:bg-primary/5 transition-colors">
+            <span class="font-semibold text-lg">Do you offer international shipping?</span>
+            <i class="fa fa-plus text-primary transition-transform"></i>
+          </button>
+          <div class="faq-answer hidden p-6 bg-white border-t border-gray-200">
+            <p class="text-gray-600">Yes, we ship worldwide. Shipping times vary by destination, typically 7-14 business days for international orders. Tracking information is provided once your order ships.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Contact Section -->
+  <section id="contact" class="py-20 bg-light">
+    <div class="container mx-auto px-4 md:px-6">
+      <div class="text-center mb-16">
+        <h2 class="text-[clamp(1.8rem,4vw,2.5rem)] font-bold text-dark mb-4">Get In Touch</h2>
+        <p class="text-gray-600 max-w-2xl mx-auto text-lg">Have questions or need assistance? Our team is here to help.</p>
+      </div>
+      
+      <div class="grid md:grid-cols-2 gap-12">
+        <!-- Map -->
+        <div class="rounded-xl overflow-hidden shadow-lg h-[400px] md:h-auto">
+          <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3022.2190412313963!2d-74.005966!3d40.712776!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x89c259bf02e13e0d%3A0x594a51180402ab9b!2sNew%20York%2C%20NY%2C%20USA!5e0!3m2!1sen!2sus!4v1635710746259!5m2!1sen!2sus" 
+                  width="100%" 
+                  height="100%" 
+                  style="border:0;" 
+                  allowfullscreen="" 
+                  loading="lazy">
+          </iframe>
+        </div>
+        
+        <!-- Contact Form -->
+        <div class="bg-white p-8 rounded-xl shadow-lg">
+          <h3 class="text-xl font-bold mb-6">Send Us a Message</h3>
+          <form id="contact">
+            <div class="mb-6">
+              <label for="name" class="block text-gray-700 font-medium mb-2">Name</label>
+              <input type="text" id="name" name="name" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent transition-colors" placeholder="Your name" required>
+            </div>
+            
+            <div class="mb-6">
+              <label for="email" class="block text-gray-700 font-medium mb-2">Email</label>
+              <input type="email" id="email" name="email" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent transition-colors" placeholder="Your email" required>
+            </div>
+            
+            <div class="mb-6">
+              <label for="message" class="block text-gray-700 font-medium mb-2">Message</label>
+              <textarea id="message" name="message" rows="5" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent transition-colors resize-none" placeholder="Your message" required></textarea>
+            </div>
+            
+            <button type="submit" id="form-submit" class="w-full bg-primary hover:bg-primary/90 text-white font-medium py-3 px-6 rounded-lg transition-all transform hover:scale-[1.02]">
+              Send Message <i class="fa fa-paper-plane ml-2"></i>
+            </button>
+          </form>
+          
+          <div class="mt-8 pt-8 border-t border-gray-200">
+            <div class="flex items-center mb-4">
+              <div class="bg-primary/10 p-3 rounded-full text-primary mr-4">
+                <i class="fa fa-map-marker"></i>
+              </div>
+              <div>
+                <h4 class="font-semibold">Address</h4>
+                <p class="text-gray-600">123 Fashion Street, New York, NY 10001, USA</p>
+              </div>
+            </div>
+            
+            <div class="flex items-center mb-4">
+              <div class="bg-primary/10 p-3 rounded-full text-primary mr-4">
+                <i class="fa fa-envelope"></i>
+              </div>
+              <div>
+                <h4 class="font-semibold">Email</h4>
+                <p class="text-gray-600">info@Elunehair.com</p>
+              </div>
+            </div>
+            
+            <div class="flex items-center">
+              <div class="bg-primary/10 p-3 rounded-full text-primary mr-4">
+                <i class="fa fa-phone"></i>
+              </div>
+              <div>
+                <h4 class="font-semibold">Phone</h4>
+                <p class="text-gray-600">+1 (555) 123-4567</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="bg-dark text-white py-12">
+    <div class="container mx-auto px-4 md:px-6">
+      <div class="grid grid-cols-1 md:grid-cols-4 gap-8 mb-8">
+        <div>
+          <h3 class="text-2xl font-bold mb-4">Elunehair</h3>
+          <p class="text-gray-400 mb-6">Premium quality wigs for every style and occasion.</p>
+          <div class="flex space-x-4">
+            <a href="#" class="bg-white/10 hover:bg-primary w-10 h-10 rounded-full flex items-center justify-center transition-colors">
+              <i class="fa fa-facebook"></i>
+            </a>
+            <a href="#" class="bg-white/10 hover:bg-primary w-10 h-10 rounded-full flex items-center justify-center transition-colors">
+              <i class="fa fa-instagram"></i>
+            </a>
+            <a href="#" class="bg-white/10 hover:bg-primary w-10 h-10 rounded-full flex items-center justify-center transition-colors">
+              <i class="fa fa-twitter"></i>
+            </a>
+            <a href="#" class="bg-white/10 hover:bg-primary w-10 h-10 rounded-full flex items-center justify-center transition-colors">
+              <i class="fa fa-pinterest"></i>
+            </a>
+          </div>
+        </div>
+        
+        <div>
+          <h4 class="text-lg font-semibold mb-4">Shop</h4>
+          <ul class="space-y-2">
+            <li><a href="#products" class="text-gray-400 hover:text-white transition-colors">Human Hair Wigs</a></li>
+            <li><a href="#products" class="text-gray-400 hover:text-white transition-colors">Synthetic Wigs</a></li>
+            <li><a href="#products" class="text-gray-400 hover:text-white transition-colors">Lace Front Wigs</a></li>
+            <li><a href="#" class="text-gray-400 hover:text-white transition-colors">Wig Accessories</a></li>
+            <li><a href="#" class="text-gray-400 hover:text-white transition-colors">Sale Items</a></li>
+          </ul>
+        </div>
+        
+        <div>
+          <h4 class="text-lg font-semibold mb-4">Information</h4>
+          <ul class="space-y-2">
+            <li><a href="#about" class="text-gray-400 hover:text-white transition-colors">About Us</a></li>
+            <li><a href="#" class="text-gray-400 hover:text-white transition-colors">Shipping Policy</a></li>
+            <li><a href="#" class="text-gray-400 hover:text-white transition-colors">Returns & Exchanges</a></li>
+            <li><a href="#faq" class="text-gray-400 hover:text-white transition-colors">FAQ</a></li>
+            <li><a href="#" class="text-gray-400 hover:text-white transition-colors">Privacy Policy</a></li>
+          </ul>
+        </div>
+        
+        <div>
+          <h4 class="text-lg font-semibold mb-4">Newsletter</h4>
+          <p class="text-gray-400 mb-4">Subscribe to get special offers and updates.</p>
+          <form class="flex">
+            <input type="email" placeholder="Your email" class="px-4 py-2 rounded-l-lg w-full focus:outline-none text-dark">
+            <button type="submit" class="bg-primary hover:bg-primary/90 px-4 py-2 rounded-r-lg transition-colors">
+              <i class="fa fa-arrow-right"></i>
+            </button>
+          </form>
+        </div>
+      </div>
+      
+      <div class="pt-8 border-t border-gray-800 text-center text-gray-500 text-sm">
+        <p>&copy; 2024 Elunehair. All rights reserved.</p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Back to Top Button -->
+  <button id="back-to-top" class="fixed bottom-24 right-8 bg-primary text-white w-12 h-12 rounded-full shadow-lg flex items-center justify-center opacity-0 invisible transition-all z-50">
+    <i class="fa fa-chevron-up"></i>
+  </button>
+  <!-- WhatsApp Floating Button -->
+  <a href="https://wa.me/1234567890" target="_blank" class="whatsapp-float" aria-label="Contact us on WhatsApp">
+    <i class="fa fa-whatsapp"></i>
+  </a>
+
+  <!-- 外部JS引入 -->
+  <script src="./src/js/main.js"></script>
+  <script>
+    document.getElementById('contact').addEventListener('submit', async (e) => {
+      e.preventDefault();
+      const btn = document.getElementById('form-submit');
+      btn.disabled = true;
+      btn.textContent = 'Sending...';
+
+      const formData = new FormData(e.target);
+      const data = Object.fromEntries(formData);
+
+      try {
+        // 使用相对路径 /api/contact —— Pages Functions 自动处理
+        const response = await fetch('/api/contact', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(data)
+        });
+
+        const result = await response.json();
+        if (response.ok) {
+          alert('The message has been sent! Thank you for your feedback.');
+          e.target.reset();
+        } else {
+          alert('Failed to send:' + (result.error || 'Please try again later'));
+        }
+      } catch (err) {
+        console.error(err);
+        alert('Network error. Please check the connection or try again later.');
+      } finally {
+        btn.disabled = false;
+        btn.textContent = 'Send Message';
+      }
+    });
+    </script>
+</body>
+</html>
